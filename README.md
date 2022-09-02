@@ -27,6 +27,7 @@ Work errors in order that you receive them (work top lines first). If you are no
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Chapter 2   :triangular_ruler:
+<sub>Data & Expressions ;-; </sub>
 
 *I am still trying to figure out how I want to structure this as I feel like the structure I used for chapter 1 will not work well with the type of learner I am so please bare with me (yourself) if the Chapter note style varies.... Also. Please don't forget your semicolons*
 
@@ -52,9 +53,15 @@ public class Salary {
 ```
 The lab for this chapter was great practice for getting user input because after the lab I had a better understanding of how it works. 
 
+![A gif to express my mind blowing epiphany](https://github.com/MBravoBoiseState/codingJournal/blob/main/mindBlown.gif)
+
 It seems that the ```Scanner scnr = new Scanner(System.in);``` line is to assign the method to a variable for future use throughout the program.
 I became way more comfortable combining the scnr method with a print statement to get user input. 
 
 Another thing that was nice to get practice with was some datatype conversion. In this lab I converted int datatypes into double datatypes so the final print statement would print out a result that was not rounded. Please see the line below for an example of the data conversion: 
 
 ```decimalConversion = (double)numerator / (double)denominator;```
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Chapter 3   :robot:

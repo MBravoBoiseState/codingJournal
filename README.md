@@ -62,6 +62,39 @@ Another thing that was nice to get practice with was some datatype conversion. I
 
 ```decimalConversion = (double)numerator / (double)denominator;```
 
----------------------------------------------------------------------------------------------------------------------------------------------------------
+#### Guided Experimentaion Notes
+
+- The way your expressions are built, in the sense of order of operations, really matters and can greatly impact the results you are receiving. Reference Example code below: 
+
+```
+public class ConversionFun {
+    public static void main(String[] args) {
+        final double PI = 3.14159;
+        double radiusCubed = 1.0;
+        double volume1 = 4 / 3 * PI * radiusCubed;
+        double volume2 = PI * radiusCubed * 4 / 3;
+        double volume3 = PI * radiusCubed * (4 / 3);
+        double volume4 = 4 / (3 * PI) * radiusCubed;
+
+        System.out.println("Volume 1: " + volume1);
+        System.out.println("Volume 2: " + volume2);
+        System.out.println("Volume 3: " + volume3);
+        System.out.println("Volume 4: " + volume4);
+        
+    }
+}
+```
+- Datatypes are important. Need to take into consideration the situation and use the appropriate datatypes when necessary. Reference example below: 
+
+12/5 as integer datatypes = 2 (it's actually 2.4 but the int datatype drops the decimal)
+
+12/5 as double datatypes = 2.4
+
+- Datatypes can also affect how results/variables are printed/returned to the terminal.
+
+- The final operator does not allow to print to the terminal (need to look further into this) 
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Chapter 3   :robot:

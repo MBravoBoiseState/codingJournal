@@ -98,3 +98,36 @@ public class ConversionFun {
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Chapter 3   :robot:
+<sub>Using Classes and Objects</sub>
+
+This chapter we learned about the difference between classes and objects. 
+
+The class construct defines a new type that can group data and methods to form an object. A class' public member methods indicate all operations a class user can perform on the object. *In 3rd grader terminology: a class is a "house blueprint" for different methods to live in and make up different objects*. Keep in mind that a programmer can create one or more objects of the same class.... Please referenece the example code below where 2 different objects are created utilizing the RestaurantFavorites class:
+
+```
+public class RestaurantFavorites {
+   public static void main(String[] args) {
+      Restaurant favLunchPlace = new Restaurant();
+      Restaurant favDinnerPlace = new Restaurant();
+
+      favLunchPlace.setName("Central Deli");
+      favLunchPlace.setRating(4);
+
+      favDinnerPlace.setName("Friends Cafe");
+      favDinnerPlace.setRating(5);
+
+      System.out.println("My favorite restaurants: ");
+      favLunchPlace.print();
+      favDinnerPlace.print();
+   }
+}
+```
+
+We also took a deep dive into utilizing packages. Ex: ```import java.util.Scanner``` imports the Scanner method from the java.util package.
+
+Utilizing the "*" at the end of an import will import the entire package. Ex: ```import java.util.*``` will import all methods in the java.util package. (AKA known as a wildcard character import)
+
+The last topic we went over in module 3 was output formatting utilizing the printf() method. We learned that we could utilize format specifiers to output information in a specific format. Please review the chart snippets below for review. 
+
+
+

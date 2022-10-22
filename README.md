@@ -127,7 +127,220 @@ We also took a deep dive into utilizing packages. Ex: ```import java.util.Scanne
 
 Utilizing the "*" at the end of an import will import the entire package. Ex: ```import java.util.*``` will import all methods in the java.util package. (AKA known as a wildcard character import)
 
-The last topic we went over in module 3 was output formatting utilizing the printf() method. We learned that we could utilize format specifiers to output information in a specific format. Please review the chart snippets below for review. 
+The last topic we went over in module 3 was output formatting utilizing the printf() method. We learned that we could utilize format specifiers to output information in a specific format. Please review the chart snippets below for review.
 
+![a chart of printf format specifiers](https://github.com/MBravoBoiseState/codingJournal/blob/main/printfFormatSpecifiers.png)
 
+![a chart of printf sub specifiers](https://github.com/MBravoBoiseState/codingJournal/blob/main/printfSubSpecifiers.png)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Chapter 4 :trollface:
+<sub>Conditionals and Loops and other Stuff</sub>
+
+*I am behind on getting these journal notes setup and i know as we get into the semester more they only become more important so i am FORCING myself to catch up....*
+
+Chapter 4 was a bit of a struggle for me honestly (wait for my chapter 5 entry) probably mostly because i was on vacation. There was also A LOT of content on conditionals and loops... i mean a lot. like 30 sections on it. 
+
+The main points I want to take away from this chapter is example code for a switch statement because i know at one point it will be asked and I just don't have this sitting at the top of my head...
+
+```
+switch (a) {
+  case 0:
+     // Print "zero"
+     break;
+
+  case 1:
+     // Print "one"
+     break;
+
+  case 2:
+     // Print "two"
+     break;
+
+   default:
+     // Print "unknown"
+     break;
+}
+```
+
+Next is the different type of loops that are available at my disposal because i thought i knew them all but then i did the following lab and i do not all the loop types there are. The two that I am really comfortable with are while loops and for loops. 
+
+```
+for (initialExpression (generally i = 0); conditionExpression (generally something like i <= variable); updateExpression (generally i++ or i--) ) {
+  // Loop body
+}
+// Statements after the loop
+```
+
+```
+while (expression) { // Loop expression
+    // Loop body: Executes if expression evaluated to true 
+    // After body, execution jumps back to the "while"
+}
+// Statements that execute after the expression evaluates to false
+```
+I could not find anything ZyBooks about Do-While loops BUT Luke did use them in one of the lab walkthroughs so I do want to make note of them here: 
+
+```
+int count = 1;
+        do {
+            System.out.println("Count is: " + count);
+            count++;
+        } while (count < 11);
+```
+
+Straight from the Java Docs. "The difference between do-while and while is that do-while evaluates its expression at the bottom of the loop instead of the top. Therefore, the statements within the do block are always executed at least once" So if I need a While Loop to at least iterate once, then i need to use a Do-While Loop.
+
+Other stuff I wanted to touch base on for this chapter is Variable Name Scope... 
+
+A declared name is only valid within a region of code known as the name's scope. Ex: A variable userNum declared in main() is only valid within main(), from the declaration to main()'s end.
+
+Most of this material declares variables at the top of main() (and if the reader has studied methods, at the top of other methods). However, a variable may be declared within other blocks too. A block is a brace-enclosed {...} sequence of statements, such as found with an if-else, for loop, or while loop. A variable name's scope extends from the declaration to the closing brace }.
+
+TO DUMB IT DOWN A BIT... If a variable exists within a code block, then the variable is only "accesible" within the codeblock unless we are returning the value. Furthermore, it is possible to create duplicate variables but it is not good practice and I will def avoid at all costs. 
+
+<strong>Common Error:</strong>  A variable declared within a loop block is (unexpectedly) re-initialized every iteration.
+
+```
+public class ScopeError {
+   public static void main (String[] args) {
+      int i = 0;
+
+      while (i < 5) {
+         int tmpSum = 0;
+         tmpSum = tmpSum + i; // Logic error: Sum is always just i
+         System.out.println("tmpSum: " + tmpSum);
+         i = i + 1;
+      }
+   }
+}
+```
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Chapter 5 :face_with_spiral_eyes:
+<sub>User-defined Methods, ArrayLists, File Parsing, and Exceptions</sub>
+
+Ok. This chapter is the first instance where I am starting to encounter unfamiliar programming concepts, especially because they are in Java. That's ok though because so far the only thing I am struggling to somewhat understand is EXCEPTION HANDLING. I hope everyone is as confused as i am xD
+
+To start off we learned about methods. we learned to create them. import them. use them. love them. 
+
+Look at the SIMPLE example below: 
+
+```
+public class SquareComputation {
+
+   public static int computeSquare(int numToSquare) {
+      return numToSquare * numToSquare;
+   }
+
+   public static void main (String [] args) {
+      int numSquared;
+
+      numSquared = computeSquare(7);
+      System.out.println("7 squared is " + numSquared);
+  }
+}
+```
+I want to call out for this specific example that the computeSquare method is setup as "public static int" because it is expected to return an int datatype value. The main method is setup as public static void because it is not expected to return any values. If a method (besides the main method) is created that is not expected to return a value but simply just print information to the console then it will be setup as public static void methodExampleName(){};
+
+Something else I'd like to call out about the example is the expected parameter passed through the computeSquare method is ```int numToSquare```. This means that the method expects an int datatype parameter passed through the method when called. This happens in the main method when you see ```numSquared = computeSquare(7);``` 7 is the int datatype parameter passed through the method which is then utilized to fill in whenever numToSquare is used in the computeSquare method. 
+
+UNIT TESTING... Unit testing will be the death of me eventually... 
+
+Unit testing is the process of individually testing a small part or unit of a program, typically a method. A unit test is typically conducted by creating a testbench, a.k.a. test harness, which is a separate program whose sole purpose is to check that a method returns correct output values for a variety of input values. Each unique set of input values is known as a test vector.
+
+The language provides a compact way to print an error message when an expression evaluates to false. Assert is an operator that prints an error message and exits the program if the provided test expression evaluates to false, having the form:
+
+Assert operator is as follows, ```assert testExpression : detailedMessage;```
+
+Please review the sample code to review how to setup unit testing with assertion: 
+
+```
+public class HrMinToMinTestHarness {
+   public static double hrMinToMin(int origHours, int origMinutes) {
+      int totMinutes;      // Resulting minutes
+
+      totMinutes = (origHours * 60) + origMinutes;
+
+      return origMinutes;
+   }
+
+   public static void main(String[] args) {
+      System.out.println("Testing started");
+
+      assert (hrMinToMin(0, 0) == 0) : "Assertion (hrMinToMin(0, 0) == 0) failed";
+      assert (hrMinToMin(0, 1) == 1) : "Assertion (hrMinToMin(0, 1) == 1) failed";
+      assert (hrMinToMin(0, 99) == 99) : "Assertion (hrMinToMin(0, 99) == 99) failed";
+      assert (hrMinToMin(1, 0) == 60) : "Assertion (hrMinToMin(1, 0) == 60) failed";
+      assert (hrMinToMin(5, 0) == 300) : "Assertion (hrMinToMin(5, 0) == 300) failed";
+      assert (hrMinToMin(2, 30) == 150) : "Assertion (hrMinToMin(2, 30) == 150) failed";
+      // Many more test vectors would be typical...
+
+      System.out.println("Testing completed");
+   }
+}
+
+```
+
+Note that assertions are not enabled by default. A programmer must execute Java programs with additional command-line options in order to enable assertions. Specifically, the command-line option -ea is necessary at run-time. Ex: java -ea HrMinToMinTestHarness
+
+I will read up more on unit testing once it becomes more prominent within our labs. 
+
+OUTPUT AND INPUT STEAMS ;-;
+
+I am still so very confused about these concepts. I understand the use case and I think I just need some practice with them but also I really want to avoid them at all cost :( 
+
+From what i do understand, input and output stream are great tools for "grabbing" data from user input strings. Here is a super simple example so I don't confuse myself that demonstrates the power of input streams:
+
+```
+import java.util.Scanner;
+
+public class StringInputStream {
+   public static void main(String[] args) {
+      Scanner inSS = null;              // Input string stream
+      String userInfo;                  // Input string
+      String firstName;                 // First name
+      String lastName;                  // Last name
+      int userAge;                      // Age
+
+      userInfo = "Amy Smith 19";
+
+      // Init scanner object with string
+      inSS = new Scanner(userInfo);
+
+      // Parse name and age values from string
+      firstName = inSS.next();
+      lastName = inSS.next();
+      userAge = inSS.nextInt();
+
+      // Output parsed values
+      System.out.println("First name: " + firstName);
+      System.out.println("Last name: " + lastName);
+      System.out.println("Age: " + userAge);
+   }
+}
+
+```
+
+ArrayLists was one of the more simple concepts for me to understand this week. I have experience with arrays and array manipulation so this was nice to refresh myself on. I have pasted some code for declaring and adding some data to array lists below: 
+
+```
+ArrayList<Integer> valsList = new ArrayList<Integer>();
+
+//Creating space for 3 Integers
+valsList.add(31);
+valsList.add(41);
+valsList.add(59);
+
+System.out.println(valsList.get(1));
+
+// Setting the value of existing elements
+valsList.set(1, 119);
+
+System.out.println(valsList.get(1));
+
+```
+
+I do want to call out that ArrayLists must be imported from the java.util package:
+
+```import java.util.ArrayList;```
